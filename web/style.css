@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+body {
+  @apply font-mono flex justify-center items-center min-h-screen m-0 bg-[#212121] text-[#888888] p-4;
+}
+
+.container {
+  @apply flex flex-col gap-4 bg-black p-8 border-4 border-[#888888] text-center max-w-md;
+}
+
+h1 {
+  @apply text-3xl font-bold text-white;
+}
+
+p {
+  @apply text-base;
+}
+
+input[type="file"] {
+  @apply block w-full p-2 mx-auto border-2 border-[#888888] bg-black text-white cursor-pointer text-base;
+}
+
+input[type="file"]::file-selector-button {
+  @apply bg-[#888888] text-black font-bold border-2 border-[#888888] py-2 px-4 cursor-pointer mr-4 transition-colors duration-100 hover:bg-white;
+}
+
+#sizes-checkboxes {
+  @apply grid grid-cols-2 sm:grid-cols-3 justify-center gap-2 select-none;
+}
+
+#sizes-checkboxes label {
+  @apply bg-black border-2 border-[#888888] p-2 cursor-pointer transition-colors duration-100 flex items-center text-sm font-mono text-[#888888] hover:bg-[#888888] hover:text-black;
+}
+
+#sizes-checkboxes input[type="checkbox"] {
+  @apply mr-2 accent-[#0077CC] scale-100 ;
+}
+
+#sizes-checkboxes input[type="checkbox"]:checked + span {
+  @apply font-bold text-[#0077CC];
+}
+
+#file-name {
+  @apply block w-full p-2 mx-auto border-2 border-[#888888] bg-black text-white text-base;
+}
+
+button {
+  @apply bg-[#0077CC] text-white border-2 border-[#0077CC] font-bold py-2 px-6 text-base cursor-pointer transition-colors duration-100 hover:bg-white hover:text-[#0077CC];
+}
+
+button:active {
+  @apply bg-[#00AA00] border-[#00AA00] text-white;
+}
+
+#status {
+  @apply text-sm min-h-6 flex justify-center items-center;
+}
+
+#download-link {
+  @apply hidden ;
+}
+
+.links {
+  @apply flex justify-center;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>img2ico</title>
+  <meta name="description" content="A tool for converting images to ICO format." />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>img2ico</h1>
+    <p>SELECT IMAGE FILE</p>
+    <input type="file" id="image-input" accept="image/*" />
+
+    <p>SELECT SIZES (PIXELS)</p>
+    <div id="sizes-checkboxes"></div>
+
+    <p>FIEL NAME</p>
+    <input type="text" id="file-name" value="" placeholder="icon.ico" />
+    <p></p>
+    <button id="convert-button">CONVERT</button>
+
+    <p id="status"></p>
+    <a id="download-link" href="#">DOWNLOAD ICO</a>
+
+    <div class="links">
+      <a class="github" href="https://github.com/nini22P/img2ico" target="_blank" rel="noopener">
+        <img title="nini22P/img2ico" width="32px" src="./github.svg" />
+      </a>
+    </div>
+
+  </div>
+  <script type="module" src="./main.ts"></script>
+</body>
+
+</html>

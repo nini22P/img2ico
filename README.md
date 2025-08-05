@@ -1,0 +1,83 @@
+# img2ico
+A tool for converting images to ICO format.
+
+## Features
+- Convert various image formats to ICO.
+- Supports custom ICO sizes.
+- Available as a CLI tool, Node.js module, and for use in browsers.
+
+## Usage
+
+### CLI
+Convert images to ICO from your command line.
+
+```bash
+npx img2ico <inputFile> [outputFile] [-s, --sizes <sizes>]
+```
+
+- `<inputFile>`: Path to the input image file.
+- `[outputFile]`: Optional path for the output .ico file. If omitted, it defaults to `<inputFile>.ico`.
+- `-s, --sizes <sizes>`: Comma-separated list of desired ICO sizes (e.g., `16,32,48,64,96,256`). Default sizes are `16,32,48,64,96,256`.
+
+**Examples:**
+```bash
+npx img2ico icon.png
+npx img2ico icon.png icon.ico -s 16,32,48,64,96,256
+```
+
+### Web UI
+Access the web interface for easy conversion: [https://nini22p.github.io/img2ico/](https://nini22p.github.io/img2ico/)
+The web tool supports a wider range of sizes including `16, 24, 32, 48, 64, 96, 128, 256, 512`.
+
+### Node.js
+Integrate `img2ico` into your Node.js projects.
+
+```ts
+import img2ico from 'img2ico';
+import { promises as fs } from 'fs';
+
+async function convertImage() {
+  const imageBuffer = await fs.readFile('icon.png');
+  const icoBuffer = await img2ico(imageBuffer, { sizes: [16, 32, 48, 64, 96, 256] });
+  await fs.writeFile('icon.ico', icoBuffer);
+  console.log('ICO created successfully!');
+}
+
+convertImage();
+```
+
+### Browser
+Use `img2ico` directly in your web applications.
+
+```ts
+import img2ico from 'img2ico';
+import { Buffer } from 'buffer'; // Assuming Buffer polyfill is available
+
+async function convertImageInBrowser(file: File) {
+  const arrayBuffer = await file.arrayBuffer();
+  const imageBuffer = Buffer.from(arrayBuffer); // Convert ArrayBuffer to Buffer
+  const icoBuffer = await img2ico(imageBuffer, { sizes: [16, 32, 48, 64, 96, 256] });
+
+  // Example: Create a download link
+  const blob = new Blob([icoBuffer], { type: 'image/x-icon' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'icon.ico';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// Example usage with a file input:
+document.getElementById('fileInput').addEventListener('change', async (event) => {
+  const file = (event.target as HTMLInputElement).files[0];
+  if (file) {
+    await convertImageInBrowser(file);
+  }
+});
+```
+
+## License
+MIT
