@@ -1,6 +1,6 @@
 {
   "name": "img2ico",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A tool for converting image to ICO format.",
   "repository": "https://github.com/nini22P/img2ico",
   "main": "dist/index.js",

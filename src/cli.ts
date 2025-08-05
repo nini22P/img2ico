@@ -14,9 +14,9 @@ program
   .option('-s, --sizes <sizes>', 'Comma-separated list of sizes, e.g., "16,32,48,64,96,256"', '16,32,48,64,96,256')
   .action(async (inputFile, outputFile, options) => {
     try {
-      console.log(`Input file: ${inputFile}`)
-
       const inputPath = path.resolve(inputFile)
+      console.log(`Input file: ${inputPath}`)
+
       let outputPath = outputFile
         ? path.resolve(outputFile)
         : path.join(path.dirname(inputPath), `${path.basename(inputPath, path.extname(inputPath))}.ico`)
