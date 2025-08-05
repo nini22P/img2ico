@@ -1,5 +1,6 @@
 # img2ico
-A tool for converting images to ICO format.
+
+A tool for converting image to ICO format.
 
 ## Features
 - Convert various image formats to ICO.
@@ -30,7 +31,11 @@ Access the web interface for easy conversion: [https://nini22p.github.io/img2ico
 The web tool supports a wider range of sizes including `16, 24, 32, 48, 64, 96, 128, 256, 512`.
 
 ### Node.js
-Integrate `img2ico` into your Node.js projects.
+Use `img2ico` in your Node.js project.
+
+```bash
+npm install img2ico
+```
 
 ```ts
 import img2ico from 'img2ico';
@@ -47,7 +52,11 @@ convertImage();
 ```
 
 ### Browser
-Use `img2ico` directly in your web applications.
+Use `img2ico` in your web project.
+
+```bash
+npm install img2ico
+```
 
 ```ts
 import img2ico from 'img2ico';
@@ -80,4 +89,4 @@ document.getElementById('fileInput').addEventListener('change', async (event) =>
 ```
 
 ## License
-MIT
+[MIT](./LICENSE)
