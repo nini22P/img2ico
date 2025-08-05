@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const downloadLink = document.getElementById('download-link') as HTMLAnchorElement
   const sizesCheckboxesDiv = document.getElementById('sizes-checkboxes') as HTMLDivElement
 
-  const icoSizes = [16, 24, 32, 48, 64, 96, 128, 256, 512]
+  const icoSizes = [16, 24, 32, 48, 64, 96, 128, 256]
 
   icoSizes.forEach(size => {
     const label = document.createElement('label')

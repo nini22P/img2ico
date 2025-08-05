@@ -25,7 +25,7 @@ input[type="file"]::file-selector-button {
 }
 
 #sizes-checkboxes {
-  @apply grid grid-cols-2 sm:grid-cols-3 justify-center gap-2 select-none;
+  @apply grid grid-cols-2 justify-center gap-2 select-none;
 }
 
 #sizes-checkboxes label {

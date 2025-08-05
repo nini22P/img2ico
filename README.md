@@ -28,7 +28,7 @@ npx img2ico icon.png icon.ico -s 16,32,48,64,96,256
 
 ### Web UI
 Access the web interface for easy conversion: [https://nini22p.github.io/img2ico/](https://nini22p.github.io/img2ico/)
-The web tool supports a wider range of sizes including `16, 24, 32, 48, 64, 96, 128, 256, 512`.
+The web tool supports a wider range of sizes including `16, 24, 32, 48, 64, 96, 128, 256`.
 
 ### Node.js
 Use `img2ico` in your Node.js project.
