@@ -43,7 +43,15 @@ import { promises as fs } from 'fs';
 
 async function convertImage() {
   const imageBuffer = await fs.readFile('icon.png');
-  const icoBuffer = await img2ico(imageBuffer, { sizes: [16, 24, 32, 48, 64, 96, 128, 256] });
+
+  // By default, img2ico generates icons with the following sizes:
+  // [16, 24, 32, 48, 64, 96, 128, 256].
+  const icoBuffer = await img2ico(imageBuffer);
+
+  // To specify a custom set of sizes, pass an options object as the
+  // second argument. For example, to generate only 16px, 32px, and 64px icons:
+  // const icoBuffer = await img2ico(imageBuffer, { sizes: [16, 32, 64] });
+
   await fs.writeFile('icon.ico', icoBuffer);
   console.log('ICO created successfully!');
 }
@@ -65,7 +73,14 @@ import { Buffer } from 'buffer'; // Assuming Buffer polyfill is available
 async function convertImageInBrowser(file: File) {
   const arrayBuffer = await file.arrayBuffer();
   const imageBuffer = Buffer.from(arrayBuffer); // Convert ArrayBuffer to Buffer
-  const icoBuffer = await img2ico(imageBuffer, { sizes: [16, 24, 32, 48, 64, 96, 128, 256] });
+
+  // By default, img2ico generates icons with the following sizes:
+  // [16, 24, 32, 48, 64, 96, 128, 256].
+  const icoBuffer = await img2ico(imageBuffer);
+
+  // To specify a custom set of sizes, pass an options object as the
+  // second argument. For example, to generate only 16px, 32px, and 64px icons:
+  // const icoBuffer = await img2ico(imageBuffer, { sizes: [16, 32, 64] });
 
   // Example: Create a download link
   const blob = new Blob([icoBuffer], { type: 'image/x-icon' });

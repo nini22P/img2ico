@@ -3,20 +3,24 @@ import { Jimp, ResizeStrategy } from 'jimp'
 export const DEFAULT_SIZES = [16, 24, 32, 48, 64, 96, 128, 256]
 
 /**
- * Options for ICO generation
- *
- * @property {number[]} [sizes] Array of icon sizes to generate
+ * Options for ICO generation.
  */
 export interface IcoOptions {
+  /**
+   * An array of icon sizes (in pixels) to be generated.
+   * Each size value should not exceed 256.
+   * The source image will be resized to each of these dimensions.
+   */
   sizes?: number[];
 }
 
 /**
- * Converts an image Buffer to an .ico format Buffer.
+ * Converts a source image Buffer into a .ico format Buffer.
  *
- * @param imageBuffer The image Buffer.
- * @param options Options for ICO generation.
- * @returns A Buffer containing the .ico file data.
+ * @param {Buffer} imageBuffer The source image data as a Buffer. PNG format is recommended for transparency support.
+ * @param {IcoOptions} [options={}] Configuration options for ICO generation.
+ * @param {number[]} [options.sizes=[16, 24, 32, 48, 64, 96, 128, 256]] An array of icon sizes to generate. Each size must not exceed 256.
+ * @returns {Promise<Buffer>} A Promise that resolves with a Buffer containing the .ico file data.
  */
 export default async function img2ico(
   imageBuffer: Buffer,
