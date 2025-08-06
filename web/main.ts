@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const statusDiv = document.getElementById('status') as HTMLDivElement
   const sizesCheckboxesDiv = document.getElementById('sizes-checkboxes') as HTMLDivElement
 
-  const icoSizes = [16, 20, 24, 30, 32, 36, 40, 48, 60, 64, 72, 80, 96, 128, 256]
+  const icoSizes = [16, 20, 24, 30, 32, 36, 40, 48, 60, 64, 72, 80, 96, 128, 256, 512, 1024]
 
   icoSizes.forEach(size => {
     const label = document.createElement('label')

@@ -8,7 +8,6 @@ export const DEFAULT_SIZES = [16, 24, 32, 48, 64, 96, 128, 256]
 export interface IcoOptions {
   /**
    * An array of icon sizes (in pixels) to be generated.
-   * Each size value should not exceed 256.
    * The source image will be resized to each of these dimensions.
    */
   sizes?: number[];
@@ -19,7 +18,7 @@ export interface IcoOptions {
  *
  * @param {Buffer} imageBuffer The source image data as a Buffer. PNG format is recommended for transparency support.
  * @param {IcoOptions} [options={}] Configuration options for ICO generation.
- * @param {number[]} [options.sizes=[16, 24, 32, 48, 64, 96, 128, 256]] An array of icon sizes to generate. Each size must not exceed 256.
+ * @param {number[]} [options.sizes=[16, 24, 32, 48, 64, 96, 128, 256]] An array of icon sizes to generate.
  * @returns {Promise<Buffer>} A Promise that resolves with a Buffer containing the .ico file data.
  */
 export default async function img2ico(
@@ -69,8 +68,8 @@ export default async function img2ico(
 
     // The size (width/height) in the ICONDIRENTRY is 1 byte.
     // A value of 0 means 256 pixels.
-    const width = size === 256 ? 0 : size
-    const height = size === 256 ? 0 : size
+    const width = size >= 256 ? 0 : size
+    const height = size >= 256 ? 0 : size
     const imageSizeInBytes = pngBuffer.length
 
     const entryOffset = headerSize + i * directoryEntrySize

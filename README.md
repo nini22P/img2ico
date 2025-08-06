@@ -23,12 +23,13 @@ npx img2ico <inputFile> [outputFile] [-s, --sizes <sizes>]
 **Examples:**
 ```bash
 npx img2ico icon.png
-npx img2ico icon.png icon.ico -s 16,24,32,48,64,96,128,256
+npx img2ico icon.png icon.ico -s "16,24,32,48,64,96,128,256"
 ```
 
 ### Web UI
 Access the web interface for easy conversion: [https://nini22p.github.io/img2ico/](https://nini22p.github.io/img2ico/)
-The web tool supports a wider range of sizes including `16, 20, 24, 30, 32, 36, 40, 48, 60, 64, 72, 80, 96, 128, 256`.
+
+The web tool supports a wider range of sizes including `16, 20, 24, 30, 32, 36, 40, 48, 60, 64, 72, 80, 96, 128, 256, 512, 1024`.
 
 ### Node.js
 Use `img2ico` in your Node.js project.
