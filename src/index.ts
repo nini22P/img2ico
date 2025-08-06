@@ -1,6 +1,6 @@
 import { Jimp, ResizeStrategy } from 'jimp'
 
-export const DEFAULT_SIZES = [16, 32, 48, 64, 96, 256]
+export const DEFAULT_SIZES = [16, 24, 32, 48, 64, 96, 128, 256]
 
 /**
  * Options for ICO generation

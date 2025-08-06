@@ -8,10 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const fileNameInput = document.getElementById('file-name') as HTMLInputElement
   const convertBtn = document.getElementById('convert-button') as HTMLButtonElement
   const statusDiv = document.getElementById('status') as HTMLDivElement
-  const downloadLink = document.getElementById('download-link') as HTMLAnchorElement
   const sizesCheckboxesDiv = document.getElementById('sizes-checkboxes') as HTMLDivElement
 
-  const icoSizes = [16, 24, 32, 48, 64, 96, 128, 256]
+  const icoSizes = [16, 20, 24, 30, 32, 36, 40, 48, 60, 64, 72, 80, 96, 128, 256]
 
   icoSizes.forEach(size => {
     const label = document.createElement('label')
@@ -57,9 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const blob = new Blob([icoBuffer], { type: 'image/x-icon' })
       const url = URL.createObjectURL(blob)
 
-      downloadLink.download = fileName
-      downloadLink.href = url
-      downloadLink.click()
+      const a = document.createElement('a')
+      a.href = url
+      a.download = fileName
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+
       statusDiv.textContent = 'CONVERSION SUCCESSFUL!'
 
     } catch (error) {

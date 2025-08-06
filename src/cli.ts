@@ -8,10 +8,10 @@ import img2ico from './index'
 program
   .name('img2ico')
   .description('A tool for converting image to ICO format.')
-  .version('1.1.1')
+  .version('1.1.2')
   .argument('<inputFile>', 'Path to the input image file to convert')
   .argument('[outputFile]', 'Path to the output .ico file (optional)')
-  .option('-s, --sizes <sizes>', 'Comma-separated list of sizes, e.g., "16,32,48,64,96,256"', '16,32,48,64,96,256')
+  .option('-s, --sizes <sizes>', 'Comma-separated list of sizes, e.g., "16,24,32,48,64,96,128,256"', '16,24,32,48,64,96,128,256')
   .action(async (inputFile, outputFile, options) => {
     try {
       const inputPath = path.resolve(inputFile)
