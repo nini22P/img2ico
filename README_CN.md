@@ -26,18 +26,18 @@ npx img2ico <inputFile> [outputFile] [-s, --sizes <sizes>]
 
 - `<inputFile>`: 输入图片文件的路径。
 - `[outputFile]`: 可选的输出 .ico 文件路径。如果省略，默认为 `<inputFile>.ico`。
-- `-s, --sizes <sizes>`: 逗号分隔的所需 ICO 尺寸列表（例如 `16,24,32,48,64,96,128,256`）。默认尺寸为 `16,24,32,48,64,96,128,256`。
+- `-s, --sizes <sizes>`: 逗号分隔的所需 ICO 尺寸列表（例如 `16,32,64`）。默认尺寸为 `16,24,32,48,64,96,128,256`。
 
 **示例：**
 ```bash
 npx img2ico icon.png
-npx img2ico icon.png icon.ico -s "16,24,32,48,64,96,128,256"
+npx img2ico icon.png icon.ico -s "16,32,64"
 ```
 
 ### 网页界面 (Web UI)
 访问网页界面进行便捷转换：[https://nini22p.github.io/img2ico/](https://nini22p.github.io/img2ico/)
 
-网页工具支持更广泛的尺寸，包括 `16, 20, 24, 30, 32, 36, 40, 48, 60, 64, 72, 80, 96, 128, 256, 512, 1024`。
+网页工具提供了广泛的尺寸选择，包括 `16, 20, 24, 30, 32, 36, 40, 48, 60, 64, 72, 80, 96, 128, 256, 512, 1024`。
 
 ### Node.js
 在您的 Node.js 项目中使用 `img2ico`。
