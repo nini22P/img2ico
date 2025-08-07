@@ -1,9 +1,17 @@
 # img2ico
 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/img2ico.svg)](https://www.npmjs.com/package/img2ico)
+![NPM Downloads](https://img.shields.io/npm/d18m/img2ico)
+[![Build Status](https://github.com/nini22P/img2ico/actions/workflows/ci.yml/badge.svg)](https://github.com/nini22P/img2ico/actions/workflows/ci.yml)
+
+English | [简体中文](README_CN.md)
+
 A tool for converting image to ICO format.
 
 ## Features
 - Convert PNG, JPEG, BMP, and WebP image formats to ICO.
+- Uses WASM for faster processing. If WASM running fails, it falls back to a pure JavaScript implementation.
 - Supports custom ICO sizes.
 - Available as a CLI tool, Node.js module, and for use in browsers.
 

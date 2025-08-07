@@ -6,9 +6,11 @@ on:
       - main
     paths-ignore:
       - README.md
+      - README_CN.md
   pull_request:
     paths-ignore:
       - README.md
+      - README_CN.md
 
 jobs:
   build-web:
