@@ -1,6 +1,6 @@
 {
   "name": "img2ico",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A tool for converting image to ICO format.",
   "repository": {
     "type": "git",
@@ -44,7 +44,9 @@
     "ico",
     "image",
     "converter",
-    "cli"
+    "cli",
+    "wasm",
+    "rust"
   ],
   "author": "22",
   "license": "MIT"
