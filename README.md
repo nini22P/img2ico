@@ -3,7 +3,7 @@
 A tool for converting image to ICO format.
 
 ## Features
-- Convert various image formats to ICO.
+- Convert PNG, JPEG, BMP, and WebP image formats to ICO.
 - Supports custom ICO sizes.
 - Available as a CLI tool, Node.js module, and for use in browsers.
 

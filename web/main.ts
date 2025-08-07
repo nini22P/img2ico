@@ -71,4 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
       statusDiv.textContent = `ERROR: ${error instanceof Error ? error.message : 'UNKNOWN ERROR'}`
     }
   })
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0]
+      const supportedTypes = ['image/png', 'image/jpeg', 'image/bmp', 'image/webp']
+      if (!supportedTypes.includes(file.type)) {
+        statusDiv.textContent = 'ERROR: Unsupported file type. Only PNG, JPEG, BMP, and WebP are supported.'
+        fileInput.value = ''
+        return
+      }
+      statusDiv.textContent = ''
+    }
+  })
 })

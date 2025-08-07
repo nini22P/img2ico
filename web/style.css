@@ -22,7 +22,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 600px;
+  max-width: 900px;
   width: 100%;
 }
 
@@ -54,6 +54,7 @@ input[type="text"]::placeholder {
 input[type="file"] {
   padding: 0;
   overflow: hidden;
+  cursor: pointer;
 }
 
 input[type="file"]::-webkit-file-upload-button,
@@ -118,6 +119,8 @@ button:hover {
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 10px;
   margin-bottom: 20px;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 #sizes-checkboxes label {
@@ -143,4 +146,5 @@ button:hover {
 #sizes-checkboxes input[type="checkbox"] {
   margin-right: 5px;
   accent-color: #007bff;
+  cursor: pointer;
 }
