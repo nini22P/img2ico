@@ -1,4 +1,4 @@
-import { cp } from 'fs/promises'
+import { cp, rm } from 'fs/promises'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -14,9 +14,11 @@ const destWeb = resolve(__dirname, 'dist/wasm-web')
 async function copyWasm() {
   try {
     await cp(sourceNode, destNode, { recursive: true })
+    await rm(`${destNode}/.gitignore`, { recursive: true, force: true })
     console.log(`Copied ${sourceNode} to ${destNode}`)
 
     await cp(sourceWeb, destWeb, { recursive: true })
+    await rm(`${destWeb}/.gitignore`, { recursive: true, force: true })
     console.log(`Copied ${sourceWeb} to ${destWeb}`)
 
     console.log('✅ WASM files copied to dist successfully!')

@@ -15,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run build:wasm && npm run copy:wasm && tsc",
+    "build": "npm run build:wasm && tsc && npm run copy:wasm",
     "build:wasm": "npm run build:wasm:node && npm run build:wasm:web",
     "build:wasm:node": "wasm-pack build ./wasm --target nodejs --out-dir ../src/wasm-node",
     "build:wasm:web": "wasm-pack build ./wasm --target web --out-dir ../src/wasm-web",

@@ -10,9 +10,6 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "moduleResolution": "node",
-    "types": [
-      "unplugin-info/client"
-    ],
   },
   "include": ["src/**/*"]
 }
