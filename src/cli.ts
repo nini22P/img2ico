@@ -3,14 +3,14 @@
 import { program } from 'commander'
 import fs from 'fs/promises'
 import path from 'path'
-import img2ico from './index.js'
+import img2ico from './node.js'
 
 async function main() {
 
   program
     .name('img2ico')
     .description('A tool for converting image to ICO format. Supports PNG, JPEG, BMP, and WebP formats.')
-    .version('1.2.3')
+    .version('1.3.0')
     .argument('<inputFile>', 'Path to the input image file to convert')
     .argument('[outputFile]', 'Path to the output .ico file (optional)')
     .option('-s, --sizes <sizes>', 'Comma-separated list of sizes, e.g., "16,32,48"', '16,24,32,48,64,96,128,256')
