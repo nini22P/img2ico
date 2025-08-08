@@ -48,19 +48,21 @@ npm install img2ico
 
 ```ts
 import img2ico from 'img2ico';
-import { promises as fs } from 'fs';
+import fs from 'fs/promises';
 
 async function convertImage() {
   const imageBuffer = await fs.readFile('icon.png');
 
   // 默认情况下，img2ico 生成以下尺寸的图标：
   // [16, 24, 32, 48, 64, 96, 128, 256]。
-  const icoBuffer = await img2ico(imageBuffer);
+  const icoResult = await img2ico(imageBuffer);
 
   // 要指定自定义尺寸集，请将 options 对象作为第二个参数传递。
   // 例如，仅生成 16px, 32px, 和 64px 的图标：
-  // const icoBuffer = await img2ico(imageBuffer, { sizes: [16, 32, 64] });
+  // const icoResult = await img2ico(imageBuffer, { sizes: [16, 32, 64] });
 
+  // 获取 ICO 数据作为 Buffer
+  const icoBuffer = icoResult.toBuffer();
   await fs.writeFile('icon.ico', icoBuffer);
   console.log('ICO 创建成功！');
 }
@@ -77,30 +79,34 @@ npm install img2ico
 
 ```ts
 import img2ico from 'img2ico';
-import { Buffer } from 'buffer'; // 假设 Buffer polyfill 可用
 
 async function convertImageInBrowser(file: File) {
   const arrayBuffer = await file.arrayBuffer();
-  const imageBuffer = Buffer.from(arrayBuffer); // 将 ArrayBuffer 转换为 Buffer
 
   // 默认情况下，img2ico 生成以下尺寸的图标：
   // [16, 24, 32, 48, 64, 96, 128, 256]。
-  const icoBuffer = await img2ico(imageBuffer);
+  const icoResult = await img2ico(arrayBuffer);
 
   // 要指定自定义尺寸集，请将 options 对象作为第二个参数传递。
   // 例如，仅生成 16px, 32px, 和 64px 的图标：
-  // const icoBuffer = await img2ico(imageBuffer, { sizes: [16, 32, 64] });
+  // const icoResult = await img2ico(arrayBuffer, { sizes: [16, 32, 64] });
+
+  // 获取 ICO 数据作为 Base64 编码的 Data URL 字符串（例如 "data:image/x-icon;base64,..."）。
+  const icoDataUrl = icoResult.toDataUrl();
 
   // 示例：创建下载链接
-  const blob = new Blob([icoBuffer], { type: 'image/x-icon' });
-  const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  a.download = 'icon.ico';
+  a.href = icoDataUrl;
+  a.download = 'icon.ico'; // 您可以在此处设置所需的文件名
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+
+  // 示例：直接在 `<img>` 标签中显示 ICO 图像
+  const imgElement = document.createElement('img');
+  imgElement.src = icoDataUrl;
+  imgElement.alt = '生成的 ICO';
+  document.body.appendChild(imgElement);
 }
 
 // 示例用法，配合文件输入：

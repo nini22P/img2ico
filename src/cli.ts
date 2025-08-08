@@ -3,21 +3,21 @@
 import { program } from 'commander'
 import fs from 'fs/promises'
 import path from 'path'
-import img2ico from './index'
+import img2ico from './index.js'
 
 async function main() {
 
   program
     .name('img2ico')
     .description('A tool for converting image to ICO format. Supports PNG, JPEG, BMP, and WebP formats.')
-    .version('1.2.1')
+    .version('1.2.2')
     .argument('<inputFile>', 'Path to the input image file to convert')
     .argument('[outputFile]', 'Path to the output .ico file (optional)')
     .option('-s, --sizes <sizes>', 'Comma-separated list of sizes, e.g., "16,24,32,48,64,96,128,256"', '16,24,32,48,64,96,128,256')
     .action(async (inputFile, outputFile, options) => {
       try {
         const inputPath = path.resolve(inputFile)
-        console.log(`Input file: ${inputPath}`)
+        console.log(`Input: ${inputPath}`)
 
         let outputPath = outputFile
           ? path.resolve(outputFile)
@@ -31,14 +31,15 @@ async function main() {
           throw new Error('Sizes list contains invalid numbers.')
         }
 
-        console.log(`Target sizes: ${sizes.join('x, ')}x`)
-        console.log(`Output file: ${outputPath}`)
+        console.log(`Sizes: ${sizes.join('x, ')}x`)
+        console.log(`Output: ${outputPath}`)
 
         const imageBuffer = await fs.readFile(inputPath)
-        const icoBuffer = await img2ico(imageBuffer, { sizes })
+        const icoResult = await img2ico(imageBuffer, { sizes })
+        const icoBuffer = icoResult.toBuffer()
 
         await fs.writeFile(outputPath, icoBuffer)
-        console.log('✅ Conversion successful!')
+        console.log('✅ Success!')
 
       } catch (error: unknown) {
         if (typeof error === 'object' && error !== null && 'code' in error && (error as { code?: string }).code === 'ENOENT') {

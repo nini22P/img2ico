@@ -48,19 +48,21 @@ npm install img2ico
 
 ```ts
 import img2ico from 'img2ico';
-import { promises as fs } from 'fs';
+import fs from 'fs/promises';
 
 async function convertImage() {
   const imageBuffer = await fs.readFile('icon.png');
 
   // By default, img2ico generates icons with the following sizes:
   // [16, 24, 32, 48, 64, 96, 128, 256].
-  const icoBuffer = await img2ico(imageBuffer);
+  const icoResult = await img2ico(imageBuffer);
 
   // To specify a custom set of sizes, pass an options object as the
   // second argument. For example, to generate only 16px, 32px, and 64px icons:
-  // const icoBuffer = await img2ico(imageBuffer, { sizes: [16, 32, 64] });
+  // const icoResult = await img2ico(imageBuffer, { sizes: [16, 32, 64] });
 
+  // Get the ICO data as a Buffer
+  const icoBuffer = icoResult.toBuffer();
   await fs.writeFile('icon.ico', icoBuffer);
   console.log('ICO created successfully!');
 }
@@ -77,30 +79,34 @@ npm install img2ico
 
 ```ts
 import img2ico from 'img2ico';
-import { Buffer } from 'buffer'; // Assuming Buffer polyfill is available
 
 async function convertImageInBrowser(file: File) {
   const arrayBuffer = await file.arrayBuffer();
-  const imageBuffer = Buffer.from(arrayBuffer); // Convert ArrayBuffer to Buffer
 
   // By default, img2ico generates icons with the following sizes:
   // [16, 24, 32, 48, 64, 96, 128, 256].
-  const icoBuffer = await img2ico(imageBuffer);
+  const icoResult = await img2ico(arrayBuffer);
 
   // To specify a custom set of sizes, pass an options object as the
   // second argument. For example, to generate only 16px, 32px, and 64px icons:
-  // const icoBuffer = await img2ico(imageBuffer, { sizes: [16, 32, 64] });
+  // const icoResult = await img2ico(arrayBuffer, { sizes: [16, 32, 64] });
+
+  // Get the ICO data as a Data URL string (e.g., "data:image/x-icon;base64,...").
+  const icoDataUrl = icoResult.toDataUrl();
 
   // Example: Create a download link
-  const blob = new Blob([icoBuffer], { type: 'image/x-icon' });
-  const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  a.download = 'icon.ico';
+  a.href = icoDataUrl;
+  a.download = 'icon.ico'; // You can set the desired filename here
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+
+  // Example: Display the ICO image directly in an <img> tag
+  const imgElement = document.createElement('img');
+  imgElement.src = icoDataUrl;
+  imgElement.alt = 'Generated ICO';
+  document.body.appendChild(imgElement);
 }
 
 // Example usage with a file input:

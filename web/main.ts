@@ -1,7 +1,6 @@
 import './style.css'
-import { Buffer } from 'buffer'
-window.Buffer = Buffer
-import img2ico, { DEFAULT_SIZES } from '../src/index'
+import img2ico from '../src/browser.js'
+import { DEFAULT_SIZES } from '../src/types.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('image-input') as HTMLInputElement
@@ -33,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       const arrayBuffer = await file.arrayBuffer()
-      const imageBuffer = Buffer.from(arrayBuffer)
 
       const selectedCheckboxes = Array.from(document.querySelectorAll('.size-checkbox:checked')) as HTMLInputElement[]
       const sizes = selectedCheckboxes.map(cb => parseInt(cb.value, 10))
@@ -43,7 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return
       }
 
-      const icoBuffer = await img2ico(imageBuffer, { sizes })
+      const icoResult = await img2ico(arrayBuffer, { sizes })
+      const icoDataUrl = icoResult.toDataUrl()
 
       const fileName = fileNameInput.value.length === 0
         ? 'icon.ico'
@@ -53,16 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
               ? fileNameInput.value.slice(0, -4)
               : fileNameInput.value
           ).replace(/\.{2,}/g, '.').replace(/\.$/, '') || 'icon') + '.ico'
-      const blob = new Blob([icoBuffer], { type: 'image/x-icon' })
-      const url = URL.createObjectURL(blob)
 
       const a = document.createElement('a')
-      a.href = url
+      a.href = icoDataUrl
       a.download = fileName
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
-      URL.revokeObjectURL(url)
 
       statusDiv.textContent = 'CONVERSION SUCCESSFUL!'
 

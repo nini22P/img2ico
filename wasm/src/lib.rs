@@ -9,10 +9,10 @@ use std::io::Cursor;
 use std::panic;
 
 #[wasm_bindgen]
-pub fn img2ico(image_buffer: &[u8], sizes: &[u32]) -> Result<Vec<u8>, JsValue> {
+pub fn img2ico(buffer: &[u8], sizes: &[u32]) -> Result<Vec<u8>, JsValue> {
     panic::set_hook(Box::new(console_error_panic_hook::hook));
 
-    let img = image::load_from_memory(image_buffer)
+    let img = image::load_from_memory(buffer)
         .map_err(|e| JsValue::from_str(&format!("Failed to decode image: {}", e)))?;
 
     let mut png_buffers: Vec<Vec<u8>> = Vec::new();
