@@ -6,16 +6,41 @@ export interface IcoOptions {
 
 export class IcoResult {
   private _icoBuffer: Buffer
+  private _sizes: number[]
 
-  constructor(icoBuffer: Buffer) {
+  constructor(icoBuffer: Buffer, sizes: number[]) {
     this._icoBuffer = icoBuffer
+    this._sizes = sizes
+  }
+
+  get size(): number {
+    return this._icoBuffer.length
+  }
+
+  get sizes(): number[] {
+    return this._sizes
+  }
+
+  toArrayBuffer(): ArrayBuffer {
+    const arrayBuffer = new ArrayBuffer(this._icoBuffer.length)
+    const view = new Uint8Array(arrayBuffer)
+    view.set(this._icoBuffer)
+    return arrayBuffer
   }
 
   toBuffer(): Buffer {
     return this._icoBuffer
   }
 
+  toBlob(): Blob {
+    return new Blob([this.toArrayBuffer()], { type: 'image/x-icon' })
+  }
+
+  toBase64(): string {
+    return this._icoBuffer.toString('base64')
+  }
+
   toDataUrl(): string {
-    return `data:image/x-icon;base64,${this._icoBuffer.toString('base64')}`
+    return `data:image/x-icon;base64,${this.toBase64()}`
   }
 }

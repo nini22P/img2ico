@@ -12,7 +12,7 @@ export async function executeWasmOrFallback(
     try {
       const icoUint8Array = wasmModule.img2ico(buffer, new Uint32Array(sizes))
       const icoBuffer = Buffer.from(icoUint8Array)
-      return new IcoResult(icoBuffer)
+      return new IcoResult(icoBuffer, sizes)
     } catch (error) {
       console.error('WASM execution failed, falling back to JS implementation.', error)
     }
@@ -73,7 +73,7 @@ export async function img2icoJs(
 
   const icoBuffer = Buffer.concat([headerBuffer, ...pngBuffers])
 
-  return new IcoResult(icoBuffer)
+  return new IcoResult(icoBuffer, sizes)
 }
 
 
