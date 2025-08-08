@@ -1,0 +1,16 @@
+{
+  "name": "img2ico-nodejs-example",
+  "version": "1.0.0",
+  "description": "A simple nodejs example for img2ico",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "img2ico": "*"
+  }
+}
