@@ -1,6 +1,6 @@
 {
   "name": "img2ico",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "type": "module",
   "description": "A tool for converting image to ICO format.",
   "repository": {
@@ -23,11 +23,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run build:wasm && rimraf dist && tsc && npm run copy:wasm",
+    "build": "npm run build:wasm && rimraf dist && tsc && node copy-wasm.mjs",
     "build:wasm": "npm run build:wasm:node && npm run build:wasm:web",
     "build:wasm:node": "wasm-pack build ./wasm --target nodejs --out-dir ../src/wasm-node",
     "build:wasm:web": "wasm-pack build ./wasm --target web --out-dir ../src/wasm-web",
-    "copy:wasm": "node copy-wasm.mjs",
     "build:web": "npm run build:wasm && vite build web",
     "prepublishOnly": "npm run build",
     "web": "npm run build:wasm && vite web",

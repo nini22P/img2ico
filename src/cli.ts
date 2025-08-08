@@ -10,10 +10,10 @@ async function main() {
   program
     .name('img2ico')
     .description('A tool for converting image to ICO format. Supports PNG, JPEG, BMP, and WebP formats.')
-    .version('1.2.2')
+    .version('1.2.3')
     .argument('<inputFile>', 'Path to the input image file to convert')
     .argument('[outputFile]', 'Path to the output .ico file (optional)')
-    .option('-s, --sizes <sizes>', 'Comma-separated list of sizes, e.g., "16,24,32,48,64,96,128,256"', '16,24,32,48,64,96,128,256')
+    .option('-s, --sizes <sizes>', 'Comma-separated list of sizes, e.g., "16,32,48"', '16,24,32,48,64,96,128,256')
     .action(async (inputFile, outputFile, options) => {
       try {
         const inputPath = path.resolve(inputFile)

@@ -20,13 +20,6 @@ export async function executeWasmOrFallback(
   return img2icoJs(buffer, options)
 }
 
-/**
- * Converts a source image Buffer into a .ico format Buffer using pure JS.
- *
- * @param {Buffer} buffer The source image data as a Buffer.
- * @param {IcoOptions} [options={}] Configuration options for ICO generation.
- * @returns {Promise<Buffer>} A Promise that resolves with a Buffer containing the .ico file data.
- */
 export async function img2icoJs(
   buffer: Buffer,
   options: IcoOptions = {}

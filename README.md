@@ -26,12 +26,12 @@ npx img2ico <inputFile> [outputFile] [-s, --sizes <sizes>]
 
 - `<inputFile>`: Path to the input image file.
 - `[outputFile]`: Optional path for the output .ico file. If omitted, it defaults to `<inputFile>.ico`.
-- `-s, --sizes <sizes>`: Comma-separated list of desired ICO sizes (e.g., `16,32,64`). Default sizes are `16,24,32,48,64,96,128,256`.
+- `-s, --sizes <sizes>`: Comma-separated list of desired ICO sizes (e.g., `16,32,48`). Default sizes are `16,24,32,48,64,96,128,256`.
 
 **Examples:**
 ```bash
 npx img2ico icon.png
-npx img2ico icon.png icon.ico -s "16,32,64"
+npx img2ico icon.png icon.ico -s "16,32,48"
 ```
 
 ### Web UI
@@ -58,8 +58,8 @@ async function convertImage() {
   const icoResult = await img2ico(imageBuffer);
 
   // To specify a custom set of sizes, pass an options object as the
-  // second argument. For example, to generate only 16px, 32px, and 64px icons:
-  // const icoResult = await img2ico(imageBuffer, { sizes: [16, 32, 64] });
+  // second argument. For example, to generate only 16px, 32px, and 48px icons:
+  // const icoResult = await img2ico(imageBuffer, { sizes: [16, 32, 48] });
 
   // Get the ICO data as a Buffer
   const icoBuffer = icoResult.toBuffer();
@@ -88,8 +88,8 @@ async function convertImageInBrowser(file: File) {
   const icoResult = await img2ico(arrayBuffer);
 
   // To specify a custom set of sizes, pass an options object as the
-  // second argument. For example, to generate only 16px, 32px, and 64px icons:
-  // const icoResult = await img2ico(arrayBuffer, { sizes: [16, 32, 64] });
+  // second argument. For example, to generate only 16px, 32px, and 48px icons:
+  // const icoResult = await img2ico(arrayBuffer, { sizes: [16, 32, 48] });
 
   // Get the ICO data as a Data URL string (e.g., "data:image/x-icon;base64,...").
   const icoDataUrl = icoResult.toDataUrl();

@@ -16,8 +16,11 @@ let wasm: { img2ico: (buffer: Uint8Array, sizes: Uint32Array) => Uint8Array; } |
 })()
 
 /**
- * Converts a source image Buffer into a .ico format Buffer.
- * Automatically uses WASM if available, otherwise falls back to a pure JS implementation.
+ * Converts a source image into a .ico format.
+ *
+ * @param {ArrayBuffer | Buffer} buffer The source image data as an ArrayBuffer or Buffer.
+ * @param {IcoOptions} [options={}] Configuration options for ICO generation.
+ * @returns {Promise<IcoResult>} A Promise that resolves with an IcoResult instance.
  */
 export default async function img2ico(
   buffer: ArrayBuffer | Buffer,

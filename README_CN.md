@@ -26,12 +26,12 @@ npx img2ico <inputFile> [outputFile] [-s, --sizes <sizes>]
 
 - `<inputFile>`: 输入图片文件的路径。
 - `[outputFile]`: 可选的输出 .ico 文件路径。如果省略，默认为 `<inputFile>.ico`。
-- `-s, --sizes <sizes>`: 逗号分隔的所需 ICO 尺寸列表（例如 `16,32,64`）。默认尺寸为 `16,24,32,48,64,96,128,256`。
+- `-s, --sizes <sizes>`: 逗号分隔的所需 ICO 尺寸列表（例如 `16,32,48`）。默认尺寸为 `16,24,32,48,64,96,128,256`。
 
 **示例：**
 ```bash
 npx img2ico icon.png
-npx img2ico icon.png icon.ico -s "16,32,64"
+npx img2ico icon.png icon.ico -s "16,32,48"
 ```
 
 ### 网页界面 (Web UI)
@@ -58,8 +58,8 @@ async function convertImage() {
   const icoResult = await img2ico(imageBuffer);
 
   // 要指定自定义尺寸集，请将 options 对象作为第二个参数传递。
-  // 例如，仅生成 16px, 32px, 和 64px 的图标：
-  // const icoResult = await img2ico(imageBuffer, { sizes: [16, 32, 64] });
+  // 例如，仅生成 16px, 32px, 和 48px 的图标：
+  // const icoResult = await img2ico(imageBuffer, { sizes: [16, 32, 48] });
 
   // 获取 ICO 数据作为 Buffer
   const icoBuffer = icoResult.toBuffer();
@@ -88,8 +88,8 @@ async function convertImageInBrowser(file: File) {
   const icoResult = await img2ico(arrayBuffer);
 
   // 要指定自定义尺寸集，请将 options 对象作为第二个参数传递。
-  // 例如，仅生成 16px, 32px, 和 64px 的图标：
-  // const icoResult = await img2ico(arrayBuffer, { sizes: [16, 32, 64] });
+  // 例如，仅生成 16px, 32px, 和 48px 的图标：
+  // const icoResult = await img2ico(arrayBuffer, { sizes: [16, 32, 48] });
 
   // 获取 ICO 数据作为 Base64 编码的 Data URL 字符串（例如 "data:image/x-icon;base64,..."）。
   const icoDataUrl = icoResult.toDataUrl();

@@ -4,7 +4,6 @@ export interface IcoOptions {
   sizes?: number[];
 }
 
-
 export class IcoResult {
   private _icoBuffer: Buffer
 
